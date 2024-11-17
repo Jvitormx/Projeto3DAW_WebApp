@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "localforage": "^1.10.0",
+    "match-sorter": "^8.0.0",
+    "react-bootstrap": "^2.10.5",
+    "react-router-dom": "^6.28.0",
+    "sort-by": "^0.0.2"
+  }
+}
