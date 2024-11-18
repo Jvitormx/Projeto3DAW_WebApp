@@ -1,7 +1,3 @@
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import Image from 'react-bootstrap/Image';
-
 function Thumb() {
   return (
     <article className="md:shadow overflow-hidden rounded-lg transition-shadow hover:shadow-xl">
@@ -25,17 +21,16 @@ function Thumb() {
 
 function Feed() {
   return (
-    <>
-    <span className="flex items-center">
-        <span className="pr-6">Principais rotas com base em sua localização</span>
-        <span className="h-px flex-1 bg-black"></span>
+    <div className="pl-32 pt-32">
+    <span className="flex pb-8 items-center">
+        <span className="pr-6 text-2xl font-bold">Principais rotas com base em sua localização</span>
       </span>
     <section className="grid grid-cols-1 gap-4 lg:gap-8 md:inline-flex flex flex-nowrap">
       <Thumb/>
       <Thumb/>
       <Thumb/>
     </section>
-    </>
+    </div>
   )
 }
 
