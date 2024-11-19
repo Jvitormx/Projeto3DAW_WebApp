@@ -6,9 +6,8 @@ async function FetchRequest(url, tipo, dados) {
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(dados)
     })
-  
-    const json = await response.json();
-    return json;
+
+    return response;
   }
 
 export default FetchRequest;

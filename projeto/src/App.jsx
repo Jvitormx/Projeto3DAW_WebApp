@@ -1,44 +1,42 @@
 import './App.css';
+import { useEffect, useState } from 'react';
 import Feed from './components/Feed';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import MeioPagina from './components/MeioPagina';
-import FetchRequest from './components/FetchRequest.js';
-
-const cliente_login = {
-  "id_pessoa":4
-};
-
-const tipo_metodo = 'POST';
-
-const url_retornoCliente = 'http://localhost/Projeto3DAW_WebApp/backEnd/retornoCliente.php';
-
-async function retornoCliente() {
-  const dados = await FetchRequest(url_retornoCliente, tipo_metodo, cliente_login);
-  console.log(dados);
-}
-
-retornoCliente();
-
-/*const url = "opt/lampp/htdocs/Projeto3DAW_WebApp/backEnd/retornoCliente.php";
-
-async function enviar_dados() {
-  const dados_cliente = await FetchRequest(url, 'POST', cliente_login);
-
-  console.log(dados_cliente);
-}
-
-enviar_dados();
-*/
+import FetchRequest from './components/FetchRequest';
 
 function App() {
+
+  const [info, setInfo] = useState([{}]);
+  
+  useEffect(() => {
+
+    const cliente_login = {
+      "id_pessoa":4
+    };
+    
+    const tipo_metodo = 'POST';
+    
+    const url_retornoCliente = 'http://localhost/Projeto3DAW_WebApp/backEnd/retornoCliente.php';
+
+    const Busca = async() => {
+      const dados = await FetchRequest(url_retornoCliente, tipo_metodo, cliente_login);
+      const info = await dados.json();
+      console.log(info[0].name);
+      setInfo(info);
+    };
+  
+    Busca();
+  }, []);
 
   return (
     <>
        <Navbar/>
+       <h1>aaaa{info[0].nome}</h1>
        <div className="m-24 space-y-20 > *">
        <MeioPagina/>
-       <Feed/>
+       <Feed />
        </div>
        <Footer/>
     </>
