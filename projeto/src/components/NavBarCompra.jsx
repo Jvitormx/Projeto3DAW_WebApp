@@ -1,10 +1,48 @@
 import { Link } from "react-router-dom";
 
+function Nivel({estado}) {
+  return (
+    <>
+    <li>
+    <h1>{estado}</h1>
+  </li>
+
+  <li className="rtl:rotate-180">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="size-4"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  </li>
+    </>
+  )
+}
+
+function GuiaCompra() {
+
+  return (
+<nav aria-label="Breadcrumb">
+  <ol className="font-normal text-base flex items-center gap-1 text-sm text-gray-600">
+    <Nivel estado={"Rotas"}/>
+    <Nivel estado={"Selecionar passagem"}/>
+    <Nivel estado={"Pagamento"}/>
+  </ol>
+</nav>
+  )
+}
+
 function ButtonTipo1({info}) {
     return (
       <Link to="projeto/src/components/Test">
         <a
-        className="inline-block border-opacity-10 rounded-xl border border-white-600 px-4 py-3 text-sm font-medium text-gray-50 bg-transparent"
+        className="inline-block border-opacity-10 rounded-xl border px-4 py-3 text-sm font-medium text-gray-50 bg-orange-400"
         >
           {info}
       </a>
@@ -12,21 +50,11 @@ function ButtonTipo1({info}) {
     )
 }
 
-function ButtonPerfil() {
-    return (
-        <a
-              className="inline-block border-opacity-90 rounded-xl border border-white-600 px-4 py-3 text-sm font-medium text-green-700 bg-green-200"
-              href="#"
-              >
-                Perfil
-            </a>
-    )
-}
-
 
 function Navbar() {
     return (
-        <header className="bg-transparent">
+        <header className="border-gray-100 bg-white shadow-md ">
+
         <div className="mx-auto m-3 max-w-screen-2xl px-0 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div className="pl-px md:flex md:items-center md:gap-3">
@@ -41,18 +69,18 @@ function Navbar() {
               </a>
               <h3 className="text-lg font-medium text-gray-900"> Viação Calango </h3>
             </div>
-      
+
+            <div>
+            <GuiaCompra/>
+            </div>
+            
             <div className="flex items-center gap-4">
               <div className="sm:flex sm:gap-4">
                 <ButtonTipo1 info="Ajuda"/>
-                <ButtonTipo1 info="Trocar Localização" />
                 <ButtonTipo1 info="Sobre nós" />
-                <div className="hidden sm:flex">
-                <ButtonPerfil/>
-                </div>
               </div>
-
             </div>
+
           </div>
         </div>
       </header>

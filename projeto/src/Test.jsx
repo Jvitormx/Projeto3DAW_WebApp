@@ -1,12 +1,10 @@
 import './App.css';
 import { useEffect, useState } from 'react';
-import Feed from './components/Feed';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import MeioPagina from './components/MeioPagina';
+import NavBarCompra from './components/NavBarCompra';
+import WindowCompra from './components/WindowCompra';
 import FetchRequest from './components/FetchRequest';
 
-function App() {
+function Test() {
 
   const [info, setInfo] = useState([{}]);
   
@@ -31,22 +29,15 @@ function App() {
     BuscaCliente();
   }, []);
 
-  const cod_estado = info[0]?.estado;
-
   return (
     <>
-       <Navbar/>
-       <div className="m-24 space-y-20 > *">
-       <MeioPagina/>
-       {cod_estado !== undefined ? (
-        <Feed cliente_cod={cod_estado} />
-      ) : (
-        <p> </p>
-      )}
+       <NavBarCompra/>
+       <div className="mx-60 my-20 space-y-5 > *">
+        <h1>aaaaaaaaaaa</h1>
+       <WindowCompra/>
        </div>
-       <Footer/>
     </>
   )
 }
 
-export default App
+export default Test

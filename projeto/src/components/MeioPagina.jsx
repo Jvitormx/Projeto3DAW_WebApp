@@ -1,4 +1,31 @@
+import { useEffect, useState } from 'react';
+import FetchRequest from './FetchRequest';
+
+function ListaEstados({estados}) {
+  const opcoes = estados.map(estado =>
+    <option value={estado.COD}>{estado.NOME}</option>
+  )
+
+  return <>{opcoes}</>
+}
+
 function FormDestino() {
+
+  const [info, setInfo] = useState([{}]);
+  
+  useEffect(() => {
+    
+    const url_retornoEstados = 'http://localhost/Projeto3DAW_WebApp/backEnd/retornoEstados.php';
+
+    const BuscaEstados = async() => {
+      let dados = await FetchRequest(url_retornoEstados, null, null);
+      const info = await dados.json();
+      setInfo(info);
+    };
+  
+    BuscaEstados();
+  }, []);
+
     return (
         <form action="#" className="mb-0 space-y-4">
 
@@ -6,11 +33,10 @@ function FormDestino() {
         <label htmlFor="email" className="sr-only">Email</label>
 
         <div className="relative">
-        <input
-            type="text"
-            className="w-full rounded-md border-gray-200 border-1 p-2 pe-12 text-md" 
-            placeholder="Digite seu destino"
-          />
+        <select className="bg-transparent w-full rounded-md border-gray-200 border-1 p-2 pe-12 text-md">
+          <option value="">Escolha seu destino</option>
+          <ListaEstados estados={info}/>
+        </select>
 
           <span className="absolute inset-y-0 end-0 grid place-content-center px-4">
             <svg
