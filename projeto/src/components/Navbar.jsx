@@ -2,9 +2,9 @@ import { Link } from "react-router-dom";
 
 function ButtonTipo1({info}) {
     return (
-      <Link to="projeto/src/components/Test">
+      <Link to="projeto/src/Compra">
         <a
-        className="inline-block border-opacity-10 rounded-xl border border-white-600 px-4 py-3 text-sm font-medium text-gray-50 bg-transparent"
+        className="inline-block border-opacity-10 rounded-xl border border-white-600 px-4 py-2 text-sm font-medium text-gray-50 bg-transparent"
         >
           {info}
       </a>
@@ -15,7 +15,7 @@ function ButtonTipo1({info}) {
 function ButtonPerfil() {
     return (
         <a
-              className="inline-block border-opacity-90 rounded-xl border border-white-600 px-4 py-3 text-sm font-medium text-green-700 bg-green-200"
+              className="inline-block border-opacity-90 rounded-xl border border-white-600 px-4 py-2 text-sm font-medium text-green-700 bg-green-200"
               href="#"
               >
                 Perfil

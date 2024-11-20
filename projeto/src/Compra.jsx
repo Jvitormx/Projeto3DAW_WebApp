@@ -1,10 +1,24 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import NavBarCompra from './components/NavBarCompra';
-import WindowCompra from './components/WindowCompra';
 import FetchRequest from './components/FetchRequest';
+import WindowCompra from './components/WindowCompra';
+import { useLocation } from 'react-router-dom';
 
-function Test() {
+function Titulo() {
+  return (
+    <h2 className="py-3 px-16 font-bold text-gray-900 md:text-5xl">
+      Ônibus disponíveis | RJ {'->'} SP
+    </h2>
+  )
+}
+
+function Compra() {
+
+  const location = useLocation();
+  const id_rota = location.state;
+
+  console.log("testerota: "+id_rota);
 
   const [info, setInfo] = useState([{}]);
   
@@ -33,11 +47,11 @@ function Test() {
     <>
        <NavBarCompra/>
        <div className="mx-60 my-20 space-y-5 > *">
-        <h1>aaaaaaaaaaa</h1>
-       <WindowCompra/>
+       <Titulo/>
+       <WindowCompra receberId={id_rota}/>
        </div>
     </>
   )
 }
 
-export default Test
+export default Compra

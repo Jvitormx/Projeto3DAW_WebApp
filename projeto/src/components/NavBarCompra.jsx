@@ -42,7 +42,7 @@ function ButtonTipo1({info}) {
     return (
       <Link to="projeto/src/components/Test">
         <a
-        className="inline-block border-opacity-10 rounded-xl border px-4 py-3 text-sm font-medium text-gray-50 bg-orange-400"
+        className="inline-block border-opacity-10 rounded-xl border px-4 py-2 text-sm font-medium text-gray-50 bg-orange-400"
         >
           {info}
       </a>
