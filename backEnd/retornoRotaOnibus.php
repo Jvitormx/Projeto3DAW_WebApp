@@ -3,7 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $dados = json_decode(file_get_contents("php://input"), true);
-    $cod = $dados['cod_rota'];
+    $id = $dados['data_envio'];
 
     $hostname = "localhost";
     $username = "root";
@@ -12,7 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $conn = new mysqli($hostname, $username, $password, $dbname);
 
-    $comandoSQL = "SELECT * FROM rota_onibus WHERE data_saida='" . $cod . "';";
+    $comandoSQL = "SELECT * FROM rota_onibus INNER JOIN onibus ON rota_onibus.id_onibus = onibus.id_onibus WHERE rota_onibus.data_saida ='" . $id . "';";
 
     $resultado = $conn->query($comandoSQL);
     $dados_retorno[] = array();
