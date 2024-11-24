@@ -1,18 +1,78 @@
 import { useEffect, useState } from "react";
 import FetchRequest from "./FetchRequest";
-import { useLocation } from "react-router-dom";
-import FormEscolherAcento from "./FormEscolherAcento";
+import Nivel from "./Nivel";
 
-function FormComprar() {
-  const location = useLocation();
-  const infoData = location.state; 
+function SelecionarTicket({onSendDataTicket, dados_rota}) {
+
+  const sendData = () => {
+
+    const dados_pagamento = {
+      id_rota: dados_rota.id,
+      tipo_onibus: dados_rota.onibus,
+      horario: dados_rota.saida,
+      valor: dados_rota.preco,
+      quantidade: document.querySelector('input[type="number"]').value || 1
+    };
+
+    onSendDataTicket(dados_pagamento); 
+  };
+
+  const placeHolder1 = "Quantos acentos? max: ";
+  const placeHolder2 = dados_rota.info_capacidade;
+  const placeHolder3 = placeHolder1 + placeHolder2;
+
+  return (
+    <nav className="px-16 py-2" aria-label="Breadcrumb">
+          <ol className="space-x-3 > * font-normal text-base flex items-center gap-1 text-sm text-gray-600">
+            <Nivel estado={"Selecionar acentos"}/>
+            <p>{dados_rota.onibus} | {dados_rota.saida}</p>
+            <form className="space-x-3 > * font-normal text-base flex items-center gap-1">
+            <input placeholder={placeHolder3} type="number" className="bg-transparent w-full rounded-md border-gray-200 border-1 p-2 pe-12 text-sm"/>
+            <button
+            onClick={() => sendData()}
+            type="submit"
+            className="rounded bg-orange-400 px-4 py-2 text-sm font-medium text-white"
+            >
+        Pagamento
+      </button>
+            </form>
+          </ol>
+    </nav>
+  )
+}
+
+function FormComprar({dados_compra, onSendDataCompra}) {
+
+  const [data, setData] = useState(null);
+
+  const callBackTicket = (data) => {
+    setData(data);
+  };
+
+  const sendData = (data) => {
+    onSendDataCompra(data); 
+  };
+  
+  useEffect(() => {
+    if (data) {
+      sendData(data);
+    }
+  }, [data]);
+
+  const [isVisible, setIsVisible] = useState(false);
+  const [componentData, setComponentData] = useState({});
+
+  const selecionarBotao = (data) => {
+    setComponentData(data); 
+    setIsVisible(true);     
+  };
 
   const [info, setInfo] = useState([]);
 
   useEffect(() => {
-    if (infoData) {
+    if (dados_compra) {
       const data_envio = {
-        data_envio: infoData, 
+        data_envio: dados_compra, 
       };
 
       const tipo_metodo = "POST";
@@ -35,9 +95,10 @@ function FormComprar() {
 
       BuscaDiaSaida();
     }
-  }, [infoData]); 
+  }, [dados_compra]); 
 
   return (
+    <>
     <div className="p-8 md:p-12 lg:px-16 lg:py-5">
       <div className="ltr:sm:text-left rtl:sm:text-right">
         <article className="overflow-hidden rounded-lg border border-gray-100 bg-white shadow-sm">
@@ -67,7 +128,7 @@ function FormComprar() {
 
                 <tbody className="divide-y divide-gray-200">
                   {info.length > 0 ? (
-                    info.map((dadoRota) => (
+                    info.map((dadoRota) => ( 
                       <tr key={dadoRota.id_rota_onibus}>
                         <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                           {dadoRota.tipo_onibus_nome}
@@ -85,7 +146,8 @@ function FormComprar() {
                           R${dadoRota.preco}
                         </td>
                         <td className="whitespace-nowrap px-4 py-2">
-                          <button className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
+                          
+                          <button onClick={() => selecionarBotao({ id: dadoRota.id_rota_onibus, preco: dadoRota.preco, info_capacidade: dadoRota.capacidade_atual, onibus:dadoRota.tipo_onibus_nome, saida:dadoRota.saida_hora})} className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
                             Selecionar
                           </button>
                         </td>
@@ -97,18 +159,20 @@ function FormComprar() {
                         colSpan="6"
                         className="text-center text-gray-500 py-4"
                       >
-                        No data available.
+                        erro.
                       </td>
                     </tr>
                   )}
                 </tbody>
               </table>
-              <FormEscolherAcento/>
             </div>
           </div>
         </article>
       </div>
     </div>
+
+    {isVisible && <SelecionarTicket onSendDataTicket={callBackTicket} dados_rota={componentData}/>}
+    </>
   );
 }
 

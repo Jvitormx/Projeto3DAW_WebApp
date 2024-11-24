@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react';
 import FetchRequest from './FetchRequest';
-import { useNavigate } from 'react-router-dom';
 
-function ListaThumb({rotas}) {
+function ListaThumb({rotas, onSendDataRota}) {
 
-  const navigate = useNavigate();
+  const sendData = (data) => {
 
-  const navegarCompra = (rotaCompra) => {
-    console.log(rotaCompra);
-    navigate('projeto/src/Compra', {state: rotaCompra});
+    const dado_rota = {
+      id_rota: data
+    };
+
+    onSendDataRota(dado_rota); 
   };
 
   const thumbs = rotas.map(rota =>
@@ -23,7 +24,7 @@ function ListaThumb({rotas}) {
   <div className="bg-white p-3 sm:p-6">
 
     <a href="#">
-     <h3 onClick={() => navegarCompra(rota.id_rota)} className="mt-1.5 text-lg font-medium text-gray-900">{rota.nome_rota}</h3>
+     <h3 onClick={() => sendData(rota.id_rota)} className="mt-1.5 text-lg font-medium text-gray-900">{rota.nome_rota}</h3>
     </a>
 
     <p className="mt-1.5 line-clamp-3 text-gray-700"><time>{rota.tempo}</time></p>
@@ -34,7 +35,23 @@ function ListaThumb({rotas}) {
 return <>{thumbs}</>
 }
 
-function Feed({cliente_cod}) {
+function Feed({cliente_cod, onSendDataRaiz}) {
+
+  const [data, setData] = useState(null);
+
+  const callBackRota = (data) => {
+    setData(data);
+  };
+
+  const sendData = (data) => {
+    onSendDataRaiz(data); 
+  };
+  
+  useEffect(() => {
+    if (data) {
+      sendData(data);
+    }
+  }, [data])
 
   const [info, setInfo] = useState([{}]);
   
@@ -64,7 +81,7 @@ function Feed({cliente_cod}) {
       </span>
     <section className="grid grid-cols-1 gap-4 lg:gap-8 md:inline-flex flex flex-nowrap">
     {info !== undefined ? (
-        <ListaThumb rotas={info}/>
+        <ListaThumb rotas={info} onSendDataRota={callBackRota}/>
       ) : (
         <p> </p>
       )}

@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import NavBarCompra from './components/NavBarCompra';
 import FetchRequest from './components/FetchRequest';
 import WindowCompra from './components/WindowCompra';
-import { useLocation } from 'react-router-dom';
+//import { useLocation } from 'react-router-dom';
+import Pagamento from './components/Pagamento';
 
 function Titulo() {
   return (
@@ -14,6 +15,26 @@ function Titulo() {
 }
 
 function Compra() {
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const [dadosCompra, setDadosCompra] = useState(null);
+
+  console.log(dadosCompra);
+
+  useEffect(() => {
+    if (dadosCompra) {
+      setIsVisible(false);
+    }
+  }, [dadosCompra]);
+
+  const callBackRaiz = (data) => {
+    setDadosCompra(data);
+  };
+
+  const selecionarBotao = () => {
+    setIsVisible(true);     
+  };
 
   const location = useLocation();
   const id_rota = location.state;
@@ -43,12 +64,18 @@ function Compra() {
     BuscaCliente();
   }, []);
 
+  const aoFinalizarCompra = (dados) => {
+    setDadosCompra(dados); 
+    setIsVisible(false);   
+  };
+
   return (
     <>
        <NavBarCompra/>
        <div className="mx-60 my-20 space-y-5 > *">
-       <Titulo/>
-       <WindowCompra receberId={id_rota}/>
+       {isVisible && <Titulo/>}
+       {isVisible && <WindowCompra receberId={id_rota} onSendDataRaiz={callBackRaiz}/>}
+       {!isVisible && <Pagamento/>}
        </div>
     </>
   )
