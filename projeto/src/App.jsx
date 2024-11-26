@@ -109,6 +109,7 @@ function App() {
     navigate('projeto/src/Adm');
   };
 
+  //considerando cliente ja logado
   const cliente_login = {
     "id_pessoa":4,
     "email":"joao.23104708360056@faeterj-rio.edu.br",
