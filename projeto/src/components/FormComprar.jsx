@@ -7,7 +7,9 @@ function SelecionarTicket({onSendDataTicket, dados_rota}) {
   const sendData = () => {
 
     const dados_pagamento = {
+      id_onibus: dados_rota.cod_onibus,
       id_rota: dados_rota.id,
+      data_rota: dados_rota.data,
       tipo_onibus: dados_rota.onibus,
       horario: dados_rota.saida,
       valor: dados_rota.preco,
@@ -72,7 +74,8 @@ function FormComprar({dados_compra, onSendDataCompra}) {
   useEffect(() => {
     if (dados_compra) {
       const data_envio = {
-        data_envio: dados_compra, 
+        data_envio: dados_compra.data_viajem, 
+        id_envio: dados_compra.id_viajem
       };
 
       const tipo_metodo = "POST";
@@ -147,7 +150,7 @@ function FormComprar({dados_compra, onSendDataCompra}) {
                         </td>
                         <td className="whitespace-nowrap px-4 py-2">
                           
-                          <button onClick={() => selecionarBotao({ id: dadoRota.id_rota_onibus, preco: dadoRota.preco, info_capacidade: dadoRota.capacidade_atual, onibus:dadoRota.tipo_onibus_nome, saida:dadoRota.saida_hora})} className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
+                          <button onClick={() => selecionarBotao({ cod_onibus: dadoRota.id_onibus, data: dadoRota.data_saida, id: dadoRota.id_rota, preco: dadoRota.preco, info_capacidade: dadoRota.capacidade_atual, onibus:dadoRota.tipo_onibus_nome, saida:dadoRota.saida_hora})} className="inline-block rounded bg-indigo-600 px-4 py-2 text-xs font-medium text-white hover:bg-indigo-700">
                             Selecionar
                           </button>
                         </td>

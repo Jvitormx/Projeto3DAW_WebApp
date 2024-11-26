@@ -7,8 +7,7 @@ import {
 } from "react-router-dom";
 import './index.css'
 import App from './App.jsx'
-import Compra from './Compra.jsx'
-import FormComprar from './components/FormComprar.jsx'
+import Adm from './Adm.jsx'
 
 const router = createBrowserRouter([
   {
@@ -16,14 +15,8 @@ const router = createBrowserRouter([
     element: <App/>,
   },
   {
-    path: "Projeto3DAW_WebApp/projeto/src/Compra",
-    element: <Compra/>,
-    children: [
-      {
-        path: "Projeto3DAW_WebApp/projeto/src/components/FormComprar",
-        element: <FormComprar />,
-      },
-    ],
+    path: "Projeto3DAW_WebApp/projeto/src/Adm",
+    element: <Adm/>,
   },
 ]);
 

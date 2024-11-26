@@ -5,11 +5,8 @@ function ListaThumb({rotas, onSendDataRota}) {
 
   const sendData = (data) => {
 
-    const dado_rota = {
-      id_rota: data
-    };
 
-    onSendDataRota(dado_rota); 
+    onSendDataRota(data); 
   };
 
   const thumbs = rotas.map(rota =>
@@ -24,10 +21,10 @@ function ListaThumb({rotas, onSendDataRota}) {
   <div className="bg-white p-3 sm:p-6">
 
     <a href="#">
-     <h3 onClick={() => sendData(rota.id_rota)} className="mt-1.5 text-lg font-medium text-gray-900">{rota.nome_rota}</h3>
+     <h3 onClick={() => sendData({id_rota:rota.id_rota, id_nome_rota:rota.nome_rota})} className="mt-1.5 text-lg font-medium text-gray-900">{rota.nome_rota}</h3>
     </a>
 
-    <p className="mt-1.5 line-clamp-3 text-gray-700"><time>{rota.tempo}</time></p>
+    <p className="mt-1.5 line-clamp-3 text-gray-700">Duração da viajem - <time>{rota.tempo}</time></p>
   </div>
   </article>
 )

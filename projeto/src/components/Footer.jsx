@@ -114,93 +114,47 @@ function Footer() {
       </div>
 
       <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
+
         <div>
-          <p className="font-medium text-gray-900">Services</p>
+          <p className="font-medium text-gray-900">Links úteis</p>
 
           <ul className="mt-6 space-y-4 text-sm">
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> 1on1 Coaching </a>
+              <a href="#" className="text-gray-700 transition hover:opacity-75"> Sobre Nós </a>
             </li>
 
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Company Review </a>
+              <a href="#" className="text-gray-700 transition hover:opacity-75"> Rotas </a>
             </li>
 
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> HR Consulting </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> SEO Optimisation </a>
+              <a href="#" className="text-gray-700 transition hover:opacity-75"> Termos de uso </a>
             </li>
           </ul>
         </div>
 
         <div>
-          <p className="font-medium text-gray-900">Company</p>
+          <p className="font-medium text-gray-900">Contato</p>
 
           <ul className="mt-6 space-y-4 text-sm">
+
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> About </a>
+              <a href="#" className="text-gray-700 transition hover:opacity-75"> Av. Vicente de Carvalho 1570 </a>
             </li>
 
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Meet the Team </a>
+              <a href="#" className="text-gray-700 transition hover:opacity-75"> 00 98167-8905 </a>
             </li>
 
             <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Accounts Review </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <p className="font-medium text-gray-900">Helpful Links</p>
-
-          <ul className="mt-6 space-y-4 text-sm">
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Contact </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> FAQs </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Live Chat </a>
-            </li>
-          </ul>
-        </div>
-
-        <div>
-          <p className="font-medium text-gray-900">Legal</p>
-
-          <ul className="mt-6 space-y-4 text-sm">
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Accessibility </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Returns Policy </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Refund Policy </a>
-            </li>
-
-            <li>
-              <a href="#" className="text-gray-700 transition hover:opacity-75"> Hiring Statistics </a>
+              <a href="#" className="text-gray-700 transition hover:opacity-75"> contato@calango.com.br </a>
             </li>
           </ul>
         </div>
       </div>
     </div>
 
-    <p className="text-xs text-gray-500">&copy; 2022. Company Name. All rights reserved.</p>
+    <p className="text-xs text-gray-500">&copy; 2024. Aviação Calango. Todos os direitos reservados.</p>
   </div>
 </footer>
     )

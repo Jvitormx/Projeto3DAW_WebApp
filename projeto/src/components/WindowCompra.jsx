@@ -52,6 +52,7 @@ function WindowCompra({ receberId, onSendDataRaiz }) {
   useEffect(() => {
     if (data) {
       setIsVisible(true);
+      console.log(data);
     }
   }, [data]);
   
@@ -94,7 +95,7 @@ function WindowCompra({ receberId, onSendDataRaiz }) {
             )}
           </ol> 
         </nav>
-        {isVisible && <FormComprar onSendDataCompra={callBackCompra} dados_compra={data}/>}
+        {isVisible && <FormComprar onSendDataCompra={callBackCompra} dados_compra={{data_viajem:data, id_viajem:receberId}}/>}
       </section>
     </>
   );
